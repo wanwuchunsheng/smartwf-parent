@@ -1,0 +1,105 @@
+# tomcat
+server:
+  port: 8093
+  tomcat:
+    remote-ip-header: x-forward-for
+    uri-encoding: UTF-8
+    # 最大线程数
+    max-threads: 1000
+    max-http-header-size: 8096
+    # 设置tomcat的basedir
+    basedir: /logs/tomcat/tmp
+    # 最大连接数
+    max-connections: 2000
+
+# spring
+spring:
+  application:
+    name: smartwf-zuul
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss # 如果使用字符串表示，用这行设置格式
+    defaultPropertyInclusion: NON_EMPTY # 如果传递过来的时间为空则不进行过滤
+    timezone: GMT+8
+    serialization:
+      write-dates-as-timestamps: false # 使用时间戳，使用数值timestamp表示日期
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true #开启重试
+     
+  # zipkin
+  zipkin:
+    base-url: http://localhost:8097
+    sleuth:
+      sampler:
+        percentage: 1.0 # 监控的百分比，默认的是0.1表示10%，这里给1.0表示全部监控
+
+# eureka
+eurekaServer:
+  host: localhost
+  user: admin
+  password: 123456
+  # eureka端口
+  port: 8091
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${eurekaServer.user}:${eurekaServer.password}@${eurekaServer.host}:${eurekaServer.port}/eureka
+  instance:
+    # 每间隔1s，向服务端发送一次心跳，证明自己依然”存活“
+    lease-renewal-interval-in-seconds: 1
+    # 告诉服务端，如果我2s之内没有给你发心跳，就代表我“死”了，将我踢出掉。
+    lease-expiration-duration-in-seconds: 2
+    prefer-ip-address: true # 以IP地址注册到服务中心，相互注册使用IP地址
+
+# feign开启Hystrix
+feign:
+  hystrix:
+    enabled: true
+
+# Feign超时时间
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 7000
+
+# zuul
+zuul:
+  #ignored-services: '*' #忽略所有未配置的service,每一个微服务的路由配置都需要配置
+  routes:
+    sso:
+      service-id: smartwf-sso
+      path: /sso/**
+    health-man:
+      service-id: smartwf-health-man
+      path: /hm/**
+    #ignored-patterns: /hello/**  #屏蔽所有/hello请求的路径
+  sensitive-headers:  cookie,header #token不能经过路由，因为信息敏感，所有增加说明
+  # 开启重试机制
+  retryable: true
+  max:
+    host:
+      connections: 2000
+  ribbon:
+    eager-load:
+      enabled: true
+
+# ribbon
+ribbon:
+  ReadTimeout: 7000 # 请求处理的超时时间
+  ConnectTimeout: 2000 # 请求连接的超时时间
+  MaxAutoRetries: 1 # 对当前实例的重试次数
+  MaxAutoRetriesNextServer: 3 # 切换实例的重试次数
+  okToRetryOnAllOperations: true # 对所有操作请求都进行重试
+  eager-load:
+    enabled: true
+      
+# 日志
+logging:
+  level:
+    root: INFO
+  config: classpath:log/logback-spring-dev.xml

@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: smartwf-eureka
+  #开启权限认证
+  security:
+    basic:
+      enabled: true
+    user:
+      name: admin
+      password: 123456
+
+server:
+  host: localhost
+  port: 8091
+
+eureka:
+  instance:
+    prefer-ip-address: true # 以IP地址注册到服务中心，相互注册使用IP地址
+  client:
+    serviceUrl:
+      defaultZone: http://${server.host}:${server.port}/eureka/
+    register-with-eureka: false
+    fetch-registry: false
+    
+  server:
+    # 测试时关闭自我保护机制，保证不可用服务及时踢出
+    enable-self-preservation: false
+    
+# 日志
+logging:
+  level:
+    root: DEBUG
+  config: classpath:log/logback-spring-dev.xml

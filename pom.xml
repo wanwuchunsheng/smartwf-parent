@@ -1,0 +1,220 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.smartwf.parent</groupId>
+  <artifactId>smartwf-parent</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>Smart wind farm</name>
+  <description>智慧风电场</description>
+  <parent>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-parent</artifactId>
+      <version>2.0.2.RELEASE</version>
+  </parent>
+  <modules>
+    	<module>smartwf-common</module>
+    	<module>smartwf-app</module>
+    	<module>smartwf-eureka</module>
+    	<module>smartwf-zuul</module>
+    	<module>smartwf-zipkin</module>
+    	<module>smartwf-sso</module>
+    	<module>smartwf-health-man</module>
+  </modules>
+  <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <org.springframework.cloud>Finchley.SR2</org.springframework.cloud>
+        <org.projectlombok>1.16.20</org.projectlombok>
+        <org.mybatis.spring.boot>2.0.1</org.mybatis.spring.boot>
+        <tk.mybatis>2.0.3</tk.mybatis>
+        <com.github.pagehelper>1.2.5</com.github.pagehelper>
+        <com.alibaba.druid>1.1.10</com.alibaba.druid>
+        <mysql.connector.java>8.0.15</mysql.connector.java>
+        <com.alibaba.fastjson>1.2.9</com.alibaba.fastjson>
+        <io.springfox>2.8.0</io.springfox>
+        <net.javacrumbs.shedlock>0.18.2</net.javacrumbs.shedlock>
+        <org.iherus>1.3.1</org.iherus>
+        <org.apache.poi>4.0.0</org.apache.poi>
+        <org.json>20180130</org.json>
+        <org.apache.commons>3.4</org.apache.commons>
+        <com.qcloud.cos_api>5.4.6</com.qcloud.cos_api>
+        <com.qcloud.qcloud-java-sdk>2.0.6</com.qcloud.qcloud-java-sdk>
+        <com.sun.mail>1.5.6</com.sun.mail>
+        <commons-net>3.6</commons-net>
+        <org.slf4j>1.7.25</org.slf4j>
+        <lombok.version>1.18.4</lombok.version>
+        <redis.clients>2.9.0</redis.clients>
+        <io.zipkin.java>2.9.4</io.zipkin.java>
+        <commons.httpclient>3.1</commons.httpclient>
+        <org.apache.rocketmq>4.3.0</org.apache.rocketmq>
+        <security.version>2.0.13.RELEASE</security.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- 使用dependencyManagement进行版本管理 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${org.springframework.cloud}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- SpringBoot开发工具 热部署  -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-devtools</artifactId>
+                <optional>true</optional>
+                <scope>import</scope>
+            </dependency>
+            <!-- mysql -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.connector.java}</version>
+            </dependency>
+            <!-- mytibas -->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${org.mybatis.spring.boot}</version>
+            </dependency>
+            <!-- 德鲁伊连接池 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${com.alibaba.druid}</version>
+            </dependency>
+            <!-- 通用mapper -->
+            <dependency>
+                <groupId>tk.mybatis</groupId>
+                <artifactId>mapper-spring-boot-starter</artifactId>
+                <version>${tk.mybatis}</version>
+            </dependency>
+            <!-- 分页助手 -->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${com.github.pagehelper}</version>
+            </dependency>
+            <!-- 阿里巴巴json -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${com.alibaba.fastjson}</version>
+            </dependency>
+            <!-- json -->
+            <dependency>
+                <groupId>org.json</groupId>
+                <artifactId>json</artifactId>
+                <version>${org.json}</version>
+            </dependency>
+            <!-- swagger2-RESTful风格API -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${io.springfox}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${io.springfox}</version>
+            </dependency>
+            <!-- 定时任务 -->
+            <dependency>
+                <groupId>net.javacrumbs.shedlock</groupId>
+                <artifactId>shedlock-spring</artifactId>
+                <version>${net.javacrumbs.shedlock}</version>
+            </dependency>
+            <!-- 导入redis（jedis）定时锁 -->
+            <dependency>
+                <groupId>net.javacrumbs.shedlock</groupId>
+                <artifactId>shedlock-provider-redis-jedis</artifactId>
+                <version>${net.javacrumbs.shedlock}</version>
+            </dependency>
+            <!-- 二维码 -->
+            <dependency>
+                <groupId>org.iherus</groupId>
+                <artifactId>qrext4j</artifactId>
+                <version>${org.iherus}</version>
+            </dependency>
+            <!-- poi -->
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>${org.apache.poi}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${org.apache.poi}</version>
+            </dependency>
+            <!-- lang3 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${org.apache.commons}</version>
+            </dependency>
+            <!-- 邮件 -->
+            <dependency>
+                <groupId>com.sun.mail</groupId>
+                <artifactId>javax.mail</artifactId>
+                <version>${com.sun.mail}</version>
+            </dependency>
+            <!-- 日志 -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jcl-over-slf4j</artifactId>
+                <version>${org.slf4j}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>log4j-over-slf4j</artifactId>
+                <version>${org.slf4j}</version>
+            </dependency>
+            <!-- 添加jedis依赖 -->
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>${redis.clients}</version>
+            </dependency>
+            <!-- zipkin -->
+            <dependency>
+                <groupId>io.zipkin.java</groupId>
+                <artifactId>zipkin-autoconfigure-ui</artifactId>
+                <version>${io.zipkin.java}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.zipkin.java</groupId>
+                <artifactId>zipkin-server</artifactId>
+                <version>${io.zipkin.java}</version>
+            </dependency>
+            <!-- httpclient -->
+            <dependency>
+                <groupId>commons-httpclient</groupId>
+                <artifactId>commons-httpclient</artifactId>
+                <version>${commons.httpclient}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-client</artifactId>
+                <version>${org.apache.rocketmq}</version>
+            </dependency>
+			<!-- lombok -->
+			<dependency>
+			   <groupId>org.projectlombok</groupId>
+			   <artifactId>lombok</artifactId>
+			   <version>${lombok.version}</version>
+			   <scope>provided</scope>
+			</dependency>
+			<!-- security -->
+			<dependency>
+			   <groupId>org.springframework.security.oauth</groupId>
+			   <artifactId>spring-security-oauth2</artifactId>
+			   <version>${security.version}</version>
+			</dependency>
+        </dependencies>
+    </dependencyManagement>
+    
+</project>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smartwf.hm.sys.dao.LogDao" >
+
+    <!-- 根据追溯码查询追溯信息 -->
+    <insert id="saveLog" >
+        INSERT INTO sys_log (id, log_url, log_user, log_content, log_json, opration_time, ip_address, result)
+        VALUES
+        <foreach item="item" index="index" collection="saveLog" separator=",">
+            (null, #{item.logUrl}, #{item.logUser}, #{item.logContent}, #{item.logJson}, #{item.oprationTime}, #{item.ipAddress}, #{item.result})
+        </foreach>
+    </insert>
+
+</mapper>

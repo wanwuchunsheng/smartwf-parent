@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: shianxian-eureka-one
+  #开启权限认证
+  security:
+    basic:
+      enabled: true
+    user:
+      name: admin
+      password: 123456
+
+server:
+  host: 10.18.8.50
+  port: 8091
+
+# eureka
+eurekaServer:
+  host1: 10.18.8.70
+  host2: 10.18.8.80
+  user: admin
+  password: ShianxianCloud1101
+  # eureka端口
+  port: 8091
+
+eureka:
+  instance:
+    prefer-ip-address: true # 以IP地址注册到服务中心，相互注册使用IP地址
+  client:
+    service-url:
+      # 开启权限验证后Eureka地址为 用户名：密码@地址：端口号，如未开启权限验证则直接使用 地址：端口号
+      # 两个eureka相互注册构建集群
+      defaultZone: http://${eurekaServer.user}:${eurekaServer.password}@${eurekaServer.host1}:${eurekaServer.port}/eureka,http://${eurekaServer.user}:${eurekaServer.password}@${eurekaServer.host2}:${eurekaServer.port}/eureka
+
+# 日志
+logging:
+  level:
+    root: INFO
+  config: classpath:log/logback-spring-prod.xml

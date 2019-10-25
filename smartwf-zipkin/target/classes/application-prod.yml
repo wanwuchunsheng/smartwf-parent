@@ -1,0 +1,47 @@
+# tomcat
+server:
+  port: 8097
+  tomcat:
+    remote-ip-header: x-forward-for
+    uri-encoding: UTF-8
+    # 最大线程数
+    max-threads: 1000
+    max-http-header-size: 8096
+    # 设置tomcat的basedir
+    basedir: ${user.home}/tomcat/tmp
+    # 最大连接数
+    max-connections: 2000
+# spring
+spring:
+  application:
+    name: smartwf-zipkin
+
+management:
+  metrics:
+    web:
+      server:
+        auto-time-requests: false
+
+# eureka
+eurekaServer:
+  host1: 10.18.8.50
+  host2: 10.18.8.70
+  host3: 10.18.8.80
+  user: admin
+  password: 123456
+  # eureka端口
+  port: 8091
+
+eureka:
+  instance:
+    prefer-ip-address: true # 以IP地址注册到服务中心，相互注册使用IP地址
+    instance-id: ${spring.application.name}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://${eurekaServer.user}:${eurekaServer.password}@${eurekaServer.host1}:${eurekaServer.port}/eureka,http://${eurekaServer.user}:${eurekaServer.password}@${eurekaServer.host2}:${eurekaServer.port}/eureka,http://${eurekaServer.user}:${eurekaServer.password}@${eurekaServer.host3}:${eurekaServer.port}/eureka
+
+# 日志
+logging:
+  level:
+    root: INFO
+  config: classpath:log/logback-spring-prod.xml
