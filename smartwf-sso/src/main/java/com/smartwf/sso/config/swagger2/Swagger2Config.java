@@ -1,14 +1,9 @@
-package com.smartwf.hm.config.swagger;
+package com.smartwf.sso.config.swagger2;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.smartwf.common.constant.Constants;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
-
-import com.smartwf.common.constant.Constants;
-
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.ParameterBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -21,8 +16,11 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * Swagger2配置类s
+ * Swagger2配置类
  * 通过@SpringBootConfiguration注解，让Spring来加载该类配置。
  * 再通过@EnableSwagger2注解来启用Swagger2。
  */
@@ -68,11 +66,11 @@ public class Swagger2Config {
      * @return
      */
     private ApiInfo apiInfo() {
-        Contact contact = new Contact("风脉能源", "http://ai.tianliwindpower.com/loginClient", "v_wanchanghuang@163.com");
+        Contact contact = new Contact("WanChangHuang", "www.baidu.com", "123@qq.com");
         return new ApiInfoBuilder()
-                .title("智慧风电场2.0 分布式系统")
-                .description("健康管理接口文档，更多请关注http://ai.tianliwindpower.com/loginClient")
-                .termsOfServiceUrl("http://ai.tianliwindpower.com/loginClient")
+                .title("风脉能源（武汉）股份有限公司")
+                .description("后台管理系统接口文档，更多请关注")
+                .termsOfServiceUrl("www.baidu.com")
                 .contact(contact)
                 .version("1.0")
                 .build();
