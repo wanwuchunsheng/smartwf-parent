@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.smartwf.common.annotation.RequiresPermissions;
 import com.smartwf.common.annotation.TraceLog;
 import com.smartwf.common.pojo.Page;
 import com.smartwf.common.pojo.Result;
@@ -48,6 +49,7 @@ public class UserController {
      */
     @GetMapping("selectSysUserByPage")
     @ApiOperation(value = "分页查询用户接口", notes = "分页查询用户")
+    @RequiresPermissions("sys:config:list2")
     @ApiImplicitParams({
             @ApiImplicitParam(paramType = "query", name = "name", value = "用户名称", dataType = "String"),
             @ApiImplicitParam(paramType = "query", name = "startTime", value = "开始时间", dataType = "Date"),

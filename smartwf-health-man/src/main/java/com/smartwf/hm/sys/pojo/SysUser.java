@@ -12,7 +12,7 @@ import lombok.Data;
  * @Description: 系统用户表
  */
 @Data
-@Table(name = "sys_user")
+@Table(name = "sys_user2")
 public class SysUser {
 	/**
      * 主键id

@@ -5,9 +5,13 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.alibaba.fastjson.JSONArray;
 import com.github.pagehelper.PageHelper;
 import com.smartwf.common.constant.Constants;
 import com.smartwf.common.dto.LogDTO;
@@ -27,10 +31,12 @@ import tk.mybatis.mapper.entity.Example;
 @Service
 public class LogServiceImpl implements LogService {
 
-
+	@Autowired
+    private MongoTemplate mongoTemplate;
+	
     @Autowired
     private LogDao logDao;
-
+ 
 
     /**
      * 保存日志
@@ -62,6 +68,17 @@ public class LogServiceImpl implements LogService {
             criteria.orBetween("oprationTime", queryPojo.getStartTime(), queryPojo.getEndTime());
         }
         List<Log> logs = this.logDao.selectByExample(example);
+       //
+		System.out.println(JSONArray.toJSONString(queryPojo));
+		queryPojo.setName("aaaaaaa");
+		//添加
+		mongoTemplate.save(queryPojo);
+		
+		//查询
+		 Query query=new Query(Criteria.where("name").is("aaaaaaa"));
+		 QueryPojo mgt =  mongoTemplate.findOne(query , QueryPojo.class);
+		 System.out.println(JSONArray.toJSONString(mgt));
+        
         return Result.data(objectPage.getTotal(), logs);
     }
 }
