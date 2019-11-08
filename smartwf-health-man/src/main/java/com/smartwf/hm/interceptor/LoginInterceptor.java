@@ -20,11 +20,12 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * 登录拦截器
  */
+
 @Component
 @Slf4j
 public class LoginInterceptor implements HandlerInterceptor {
 
-
+	
     @Autowired
     private RedisService redisService;
 
@@ -46,5 +47,6 @@ public class LoginInterceptor implements HandlerInterceptor {
         PermissionThreadLocal.setPermission(null);
         UserThreadLocal.setUser(null);
     }
+   
 
 }

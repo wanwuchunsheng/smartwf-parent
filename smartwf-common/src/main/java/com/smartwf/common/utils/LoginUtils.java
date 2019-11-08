@@ -21,13 +21,12 @@ import com.smartwf.common.thread.UserThreadLocal;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @Auther: 赵明明
+
  * @Date: 2018/11/5 15:09
  * @Description: 登录工具类
  */
 @Slf4j
 public class LoginUtils {
-
     public static boolean checkLogin(HttpServletRequest request, HttpServletResponse response, Object handler, RedisService redisService) {
         // 判断是否登录
         String token = request.getHeader(Constants.SMARTWF_TOKEN);

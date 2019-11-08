@@ -122,6 +122,44 @@
             <groupId>org.apache.rocketmq</groupId>
             <artifactId>rocketmq-client</artifactId>
         </dependency>
+        <!-- mongoDB -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+        <!-- shiro -->
+      <!--  <dependency>
+		    <groupId>org.apache.shiro</groupId>
+		    <artifactId>shiro-spring-boot-web-starter</artifactId>
+		</dependency> -->
+		<!-- <dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.5</version>
+		</dependency> -->
+        <!-- 
+        <dependency>
+		     <groupId>com.aliyun.alink.linksdk</groupId>
+		     <artifactId>iot-linkkit-java</artifactId>
+		     <version>1.2.0.1</version>
+		     <scope>compile</scope>
+		 </dependency>
+		 <dependency>
+		      <groupId>com.aliyun</groupId>
+		      <artifactId>aliyun-java-sdk-core</artifactId>
+		      <version>3.7.1</version>
+		  </dependency>
+		  <dependency>
+		      <groupId>com.aliyun</groupId>
+		      <artifactId>aliyun-java-sdk-iot</artifactId>
+		      <version>6.9.0</version>
+		  </dependency>
+		  <dependency>
+		    <groupId>com.aliyun.openservices</groupId>
+		    <artifactId>iot-client-message</artifactId>
+		    <version>1.1.2</version>
+		  </dependency>
+        -->
     </dependencies>
     
     <build>

@@ -13,12 +13,12 @@
   </parent>
   <modules>
     	<module>smartwf-common</module>
+    	<module>smartwf-health-man</module>
+    	<module>smartwf-system-man</module>
+    	<module>smartwf-sso</module>
     	<module>smartwf-app</module>
     	<module>smartwf-eureka</module>
     	<module>smartwf-zuul</module>
-    	<module>smartwf-zipkin</module>
-    	<module>smartwf-sso</module>
-    	<module>smartwf-health-man</module>
   </modules>
   <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -49,6 +49,7 @@
         <commons.httpclient>3.1</commons.httpclient>
         <org.apache.rocketmq>4.3.0</org.apache.rocketmq>
         <security.version>2.0.13.RELEASE</security.version>
+        <shiro.version>1.4.0-RC2</shiro.version>
     </properties>
 
     <dependencyManagement>
@@ -209,11 +210,18 @@
 			   <scope>provided</scope>
 			</dependency>
 			<!-- security -->
-			<dependency>
+			<!-- <dependency>
 			   <groupId>org.springframework.security.oauth</groupId>
 			   <artifactId>spring-security-oauth2</artifactId>
 			   <version>${security.version}</version>
-			</dependency>
+			</dependency> -->
+			 <!-- shiro -->
+			 <!-- <dependency>
+			    <groupId>org.apache.shiro</groupId>
+			    <artifactId>shiro-spring-boot-web-starter</artifactId>
+			    <version>${shiro.version}</version>
+			</dependency> -->
+	        
         </dependencies>
     </dependencyManagement>
     
