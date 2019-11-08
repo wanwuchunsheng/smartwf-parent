@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smartwf.sso.dao.RoleDao" >
+
+    <select id="selectRoleByUserId" resultType="com.smartwf.sso.pojo.Role">
+        SELECT r.id, r.role_name, r.company_id, r.description, r.system_role, r.enable
+            FROM sys_user_role ur
+            INNER JOIN sys_user u ON u.id = ur.user_id
+            INNER JOIN sys_role r ON r.id = ur.role_id
+            WHERE ur.user_id = #{userId}
+            AND r.enable = 1
+    </select>
+
+    <select id="selectRoleBySys" resultType="com.smartwf.sso.pojo.Role">
+        SELECT r.id, r.role_name, r.company_id, r.description, r.system_role, r.enable
+            FROM sys_user_role ur
+            INNER JOIN sys_user u ON u.id = ur.user_id
+            INNER JOIN sys_role r ON r.id = ur.role_id
+            WHERE ur.user_id = #{userId}
+            AND r.system_role = #{systemRole}
+            <if test="roleName != null and roleName != ''">
+                AND r.role_name LIKE CONCAT(CONCAT('%',#{roleName}),'%')
+            </if>
+            AND r.enable = 1
+            order by r.id desc
+    </select>
+
+</mapper>

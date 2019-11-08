@@ -6,7 +6,7 @@ package com.smartwf.common.constant;
  */
 public class Constants {
 
-    public static final String CLOUDFY_TOKEN = "smartwf-token";
+    public static final String SMARTWF_TOKEN = "smartwf-token";
 
     public static final String SUCCESS = "成功";
 
