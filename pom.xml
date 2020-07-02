@@ -30,7 +30,7 @@
         <tk.mybatis>2.0.3</tk.mybatis>
         <com.github.pagehelper>1.2.5</com.github.pagehelper>
         <com.alibaba.druid>1.1.10</com.alibaba.druid>
-        <mysql.connector.java>8.0.15</mysql.connector.java>
+        <mysql.connector.java>8.0.16</mysql.connector.java>
         <com.alibaba.fastjson>1.2.9</com.alibaba.fastjson>
         <io.springfox>2.8.0</io.springfox>
         <net.javacrumbs.shedlock>0.18.2</net.javacrumbs.shedlock>
